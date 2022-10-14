@@ -15,16 +15,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $totalReviews = User::where('id', '=', Auth::id())->withCount('reviews')->get();
-        $reviews = Review::where('user_id', '=', Auth::id())->paginate(5);
+        if(Auth::user()){
+            $user = Auth::user();
+            $totalReviews = User::where('id', '=', Auth::id())->withCount('reviews')->get();
+            $reviews = Review::where('user_id', '=', Auth::id())->paginate(5);
 
-        return view('dashboard.index')->with([
-           'reviews' => $reviews,
-           'user' => $user,
-           'totalReviews' => $totalReviews
-        ]);
-
+            return view('dashboard.index')->with([
+            'reviews' => $reviews,
+            'user' => $user,
+            'totalReviews' => $totalReviews
+            ]);
+        }
     }
 
     /**
@@ -67,7 +68,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -77,9 +78,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = User::find(Auth::user()->id);
+        if($user){
+
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->save();
+            return redirect()->back();
+
+        }else{
+
+             return redirect()->back();
+        }
     }
 
     /**

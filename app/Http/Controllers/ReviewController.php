@@ -96,6 +96,7 @@ class ReviewController extends Controller
                 'engine_displacement' => 'required',
                 'body_type' => 'required',
                 'fuel_type' => 'required',
+                'gearbox_type' => 'required',
                 'recommend' => 'required',
             ]);
 
@@ -152,9 +153,27 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $car_id)
     {
-        //
+        $review = Review::find($id);
+        $totalReviews = User::where('id', '=', $review->user_id)->withCount('reviews')->get();
+        $reviewCounts = CarGeneration::where('id', '=',  $car_id)->withCount('carReviews')->get();
+        $recommendCounts = Review::recommendCounts($car_id);
+        $notRecommendCounts = Review::notRecommendCounts($car_id);
+        $carAverageScores = Review::carAverageScores($car_id);
+        $cars = CarGeneration::find($id);
+        $images = $review->images;
+        return view('reviews.edit')->with([
+            'review' => $review,
+            'images' => $images,
+            'cars' => $cars,
+            'reviewCounts' => $reviewCounts,
+            'recommendCounts' =>  $recommendCounts,
+            'notRecommendCounts' =>  $notRecommendCounts,
+            'carAverageScores' => $carAverageScores,
+            'totalReviews' => $totalReviews
+
+        ]);
     }
 
     /**
@@ -166,7 +185,63 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $review = Review::find($id);
+        if($review){
+            $review->title = $request['title'];
+            $review->body = $request['body'];
+            $review->positives = $request['positives'];
+            $review->negatives = $request['negatives'];
+            $review->suggestion = $request['suggestion'];
+            $review->reliability = $request['reliability'];
+            $review->engines = $request['engines'];
+            $review->interior = $request['interior'];
+            $review->chassis = $request['chassis'];
+            $review->comfort = $request['comfort'];
+            $review->handling = $request['handling'];
+            $review->practicality = $request['practicality'];
+            $review->engines = $request['engines'];
+            $review->engine_displacement = $request['engines'];
+            $review->consumption_city = $request['consumption_city'];
+            $review->consumption_country = $request['consumption_country'];
+            $review->consumption_mixed  = $request['consumption_mixed'];
+            $review->fuel_type = $request['fuel_type'];
+            $review->body_type = $request['body_type'];
+            $review->gearbox_type = $request['gearbox_type'];
+            $review->recommend = $request['recommend'];
+
+            $imageId= $request->input('deleteImage');
+
+            if($request->has('deleteImage')){
+                    $images = ReviewImages::find($imageId);
+                    foreach($images as $image){
+                        if(!$image) abort(404);
+                        unlink(public_path('review_images/'.$image->image));
+                        $image->delete();
+                    }
+
+                }
+
+            if (Auth::check()) {
+                 if($request->has('images')){
+                     if (is_array($request->file('images'))){
+                     foreach($request->file('images')as $image){
+                         $imageName = $request['title'].'-image-'.time().rand(1,1000).'.'.$image->extension();
+                         $image->move(public_path('review_images'),$imageName);
+                         ReviewImages::create([
+                             'review_id'=>$review->id,
+                             'image'=>$imageName
+                         ]);
+                         }
+                     }
+                   }
+
+               }
+
+            $review->save();
+            return redirect('/profilis')->with('message', ' Atsiliepimas redaguotas sėkmingai');
+        }else{
+             return redirect()->back();
+        }
     }
 
     /**

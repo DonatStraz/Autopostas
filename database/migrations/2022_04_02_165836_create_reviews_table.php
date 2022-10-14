@@ -34,6 +34,7 @@ return new class extends Migration
             $table->integer('engine_displacement');
             $table->string('body_type');
             $table->string('fuel_type');
+            $table->string('gearbox_type');
             $table->string('positives');
             $table->string('negatives');
             $table->string('recommend');

@@ -103,18 +103,23 @@ function decrement(e) {
 
 
   let userNameInput = document.getElementById("userName");
+  let userEmailInput = document.getElementById("userEmail");
   let submitBtn = document.getElementById("acceptChanges")
 
   document.getElementById('editUserBtn').onclick = function() {
     var disabled = document.getElementById("userName").disabled;
     if (disabled) {
         userNameInput.disabled = false;
+        userEmailInput.disabled = false;
         userNameInput.classList.add("dashboard-input");
+        userEmailInput.classList.add("dashboard-input");
         submitBtn.style.visibility = "visible";
     }
     else {
         userNameInput.disabled = true;
+        userEmailInput.disabled = true;
         submitBtn.style.visibility = "hidden";
         userNameInput.classList.remove("dashboard-input");
+        userEmailInput.classList.remove("dashboard-input");
     }
 }

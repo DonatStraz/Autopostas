@@ -3,7 +3,9 @@
         <div class="xl:grid gap-4 xl:grid-cols-5">
 
         <div class="bg-slate-600 text-white rounded col-span-2 mt-5 md:mt-0 px-10 py-5">
-            <form  enctype="multipart/form-data" method="POST" action="">
+            <form  enctype="multipart/form-data" method="POST" action="{{ route('update.user')}}">
+                {{ csrf_field() }}
+                {{ method_field('put') }}
             <div class="text-end">
 
               <button type="submit" id="acceptChanges" class=" invisible">Išsaugoti pakeitimus<i class="fa-solid fa-check text-lime-600 text-2xl "></i></button>
@@ -11,9 +13,9 @@
 
             </div>
             <div class="flex justify-center">
-                <div class="flex flex-col text-center ">
+                <div class="flex flex-col text-center">
                     <div><i class="rounded-full shadow py-8 px-9 bg-lime-600 fa-solid fa-user text-7xl"></i></div>
-                    <div><input class="bg-slate-600 text-center mt-1 " id="userName" disabled value="{{$user->name}}"></div>
+                    <div><input class="bg-slate-600 text-center mt-1" name="name" id="userName" disabled value="{{$user->name}}"></div>
                 </div>
             </div>
 
@@ -21,7 +23,7 @@
 
             <div class="user-info">
                 <div class="mt-2 flex justify-between">
-                    <div><i class="fa-solid fa-envelope px-1"></i> {{$user->email}}</div>
+                    <div><input class="bg-slate-600 text-center mt-1" name="email" id="userEmail" disabled value="{{$user->email}}"></div>
                     <div><button type="button"><i class="fa-solid fa-pen-to-square"></i></div>
                 </div>
             </div>

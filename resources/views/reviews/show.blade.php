@@ -160,7 +160,8 @@
             <div class="flex flex-col mx-1">
                 <div class=""><i class="fa-solid fa-car-side w-5"></i> Litrazas:{{$review->engine_displacement}} </div>
                 <div class=""><i class="fa-solid fa-gas-pump w-5"></i> Kuro Tipas:{{$review->fuel_type}}</div>
-
+                <div class=""><i class="fa-solid fa-car w-5"></i> Kėbulo tipas:{{$review->body_type}} </div>
+                <div class=""><i class="fa-solid fa-circle-h w-5"></i></i> Pavaru deze:{{$review->gearbox_type}} </div>
                 <div>
                  <div class=""><i class="fa-solid fa-road w-6"></i>Kuro Sanaudos:</div>
                     <div class="flex">
