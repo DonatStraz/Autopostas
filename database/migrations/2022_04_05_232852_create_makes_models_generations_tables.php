@@ -28,6 +28,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('model_id');
+            $table->string('image');
             $table->timestamps();
         });
     }

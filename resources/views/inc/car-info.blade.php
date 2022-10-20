@@ -1,12 +1,14 @@
 <div class="car-info card-info md:grid md:grid-cols-2 mt-5 border-b-2">
-    <img class="object-fill h-full" src="{{ asset('images/bmw-i4.jpg')}}">
+
+    @if(count($cars) > 0)
+        @foreach($cars as $car)
+        @endforeach
+    @endif
+
+    <img class="object-fill h-full" src="{{ asset('storage/'.$car->image)}}">
     <div class="flex flex-col items-center pt-2 bg-slate-100 pb-2 md:pb-2">
 
-        @if(count($cars) > 0)
-            @foreach($cars as $car)
-             <div class="car-title text-2xl my-2">{{$car->make}} {{$car->model}} {{$car->generation}}</div>
-            @endforeach
-        @endif
+             <div class="car-title text-2xl my-2">{{$car->CarModels->CarMakes->name}} {{$car->CarModels->name}} {{$car->name}}</div>
 
         @if(count($carAverageScores) > 0)
             @foreach($carAverageScores as $carScore)

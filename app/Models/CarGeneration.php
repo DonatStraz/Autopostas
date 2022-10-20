@@ -10,24 +10,14 @@ class CarGeneration extends Model
     use HasFactory;
     protected $table = 'car_generations';
 
+    protected $guarded =[];
+
     public function carReviews(){
         return $this->hasMany(Review::class, 'generation_id');
-
     }
 
-    public function carMake(){
-        return $this->belongsToMany(CarMake::class, CarModel::class);
-    }
-
-
-
-    public function carModel(){
+    public function carModels(){
         return $this->belongsTo(CarModel::class, 'model_id');
-    }
-
-    public function car()
-    {
-        return $this->hasManyThrough(CarMake::class,CarModel::class);
     }
 
 }

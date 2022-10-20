@@ -3,10 +3,8 @@
 
             <div class="review-card md:grid md:grid-cols-3 border-b-4 border-slate-200">
                 <div class="car-info col-span-1">
-
-                    <img src="{{ asset('images/bmw-i4.jpg')}}">
+                  <img src="{{ asset('storage/'. $review->carGeneration->image)}}">
                     <div class="flex flex-col items-center pt-2 bg-slate-100 pb-2 md:pb-2">
-
                         <div class="car-title text-2xl">{{$review->carMake->name}} {{$review->carModel->name}} {{$review->carGeneration->name}}</div>
 
                         <div class="flex justify-center">

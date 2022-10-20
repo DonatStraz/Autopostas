@@ -83,8 +83,13 @@ class UserController extends Controller
         $user = User::find(Auth::user()->id);
         if($user){
 
-            $user->name = $request['name'];
-            $user->email = $request['email'];
+            $formFields = $request->validate([
+                'name' => 'required|max:20|',
+                'email' => 'required|unique:users|',
+            ]);
+
+            $user->name = $request->name;
+            $user->email = $request->email;
             $user->save();
             return redirect()->back();
 

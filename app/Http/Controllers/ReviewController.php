@@ -47,9 +47,7 @@ class ReviewController extends Controller
      */
     public function create($id)
     {
-        $cars = CarMake::join('car_models', 'car_models.make_id', '=', 'car_makes.id')->join('car_generations', 'car_generations.model_id', '=', 'car_models.id')
-        ->get(['car_makes.name as make','car_makes.id as make_id', 'car_models.name as model','car_models.id as model_id','car_generations.name as generation', 'car_generations.id as generation_id'])
-        ->where('generation_id', '=', $id);
+        $cars = CarGeneration::with(['carModels','carModels.carMakes'])->get()->where('id','=',$id);
         $review = Review::find($id);
         $reviewCounts = CarGeneration::where('id', '=',  $id)->withCount('carReviews')->get();
         $recommendCounts = Review::recommendCounts($id);

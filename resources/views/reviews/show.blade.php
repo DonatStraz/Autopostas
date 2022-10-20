@@ -4,11 +4,13 @@
 
     <section class=" card-info lg:col-span-3 xl:col-span-2 bg-slate-100  mt-5 h-full border-b-2">
         <div>
-        <img src="{{ asset('images/mercedes.jpg')}}">
+        <img src="{{ asset('storage/'.$review->carGeneration->image)}}">
         </div>
 
         <div class="flex flex-col items-center pt-2 pb-2 md:pb-2">
-            <div class="car-title text-2xl my-2">{{$review->CarMake->name}}  {{$review->CarModel->name}} {{$review->CarGeneration->name}}</div>
+
+            <div class="car-title text-xl md:ml-2"><a href="/automobiliai/{{$review->carGeneration->id}}">
+            {{$review->CarMake->name}} {{$review->CarModel->name}} {{$review->CarGeneration->name}}</a></div>
 
             @if(count($carAverageScores) > 0)
                 @foreach($carAverageScores as $carScore)
@@ -262,7 +264,7 @@
                     <div class="container py-2 mx-auto ">
                       <div class="flex flex-wrap -m-1 md:-m-2">
                         <div class="flex flex-wrap ">
-                            @foreach ($images as $image)
+                        @foreach ($images as $image)
                           <div class="md:w-1/2 py-2 md:p-2">
                           <img src="/review_images/{{$image->image}}" class="block object-cover object-center w-full h-full rounded-lg">
                         </div>

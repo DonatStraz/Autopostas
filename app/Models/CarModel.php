@@ -10,10 +10,15 @@ class CarModel extends Model
     use HasFactory;
     protected $table = 'car_models';
 
+    protected $guarded =[];
 
-    public function carGeneration()
+    public function carGenerations()
     {
-        return $this->hasMany(CarGeneration::class);
+        return $this->hasMany(CarGeneration::class, 'generation_id');
+    }
+
+    public function carMakes(){
+        return $this->belongsTo(CarMake::class, 'make_id');
     }
 
 }
