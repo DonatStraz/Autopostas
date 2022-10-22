@@ -25,6 +25,7 @@ class CarController extends Controller
     else if(empty($make) && empty($model) && empty($generation)){
      $cars = CarGeneration::with(['carModels','carModels.carMakes'])->get();
     }
+
         return view('cars.index')->with([
             'cars' => $cars
         ]);

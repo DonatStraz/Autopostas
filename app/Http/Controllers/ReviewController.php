@@ -34,8 +34,12 @@ class ReviewController extends Controller
         else if(empty($make) && empty($model) && empty($generation)){
             $reviews = Review::whereNotNull('title')->paginate(10);
         }
+
+        $cars = CarGeneration::get();
+
             return view('reviews.index')->with([
                 'reviews' => $reviews,
+                'cars' => $cars,
             ]);
 
     }
@@ -113,6 +117,7 @@ class ReviewController extends Controller
                     }
                   }
               }
+
             return back()->with('message', ' Atsiliepimas patalpintas sėkmingai');
     }
 

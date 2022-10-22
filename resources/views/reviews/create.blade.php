@@ -1,21 +1,20 @@
 <x-app-layout>
-    <div class="container lg:w-8/12 mx-auto ">
+    <div class="container lg:w-6/12 mx-auto ">
 
         @include('inc.car-info')
 
         @if (auth()->check())
 
-           <form class="mt-5 md:mx-0 mx-3" enctype="multipart/form-data" method="POST" action="{{ route('store.review')}}" >
+           <form class="mt-5 md:mx-0 mx-3" enctype="multipart/form-data" method="POST" action="{{ route('store.review')}}">
             @csrf
 
             <div class="">
-                @if(count($cars) > 0)
-                @foreach($cars as $car)
-                    <input type="hidden" name="make_id" value="{{$car->make_id}}">
-                    <input type="hidden" name="model_id" value="{{$car->model_id}}">
-                    <input type="hidden" name="generation_id" value="{{$car->generation_id}}">
-                @endforeach
-                @endif
+                  @foreach($cars as $car)
+                    <input type="hidden" name="make_id" value="{{$car->carModels->carMakes->id}}">
+                    <input type="hidden" name="model_id" value="{{$car->carModels->id}}">
+                    <input type="hidden" name="generation_id" value="{{$car->id}}">
+                  @endforeach
+
 
                 <label for="title" class="block font-medium text-gray-900 dark:text-gray-300">Atsiliepimo pavadinimas</label>
                 <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" maxlength="100" required>

@@ -39,7 +39,7 @@
                     @endforeach
             </div>
             @if(count($reviewCounts) > 0)
-                @foreach($reviewCounts as $count)  <p class="text-center mt-3 text-slate-500">Iš viso įvertinimu: {{$count->car_reviews_count}}</p>
+                @foreach($reviewCounts as $count) <p class="text-center mt-3 text-slate-500">Iš viso įvertinimu: {{$count->car_reviews_count}}</p>
                 @endforeach
                 @else
                 <p class="text-center mt-3 text-slate-500">Įvertinimu nera</p>

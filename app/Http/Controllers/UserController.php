@@ -16,11 +16,12 @@ class UserController extends Controller
     public function index()
     {
         if(Auth::user()){
+
             $user = Auth::user();
             $totalReviews = User::where('id', '=', Auth::id())->withCount('reviews')->get();
             $reviews = Review::where('user_id', '=', Auth::id())->paginate(5);
 
-            return view('dashboard.index')->with([
+            return view('profile.index')->with([
             'reviews' => $reviews,
             'user' => $user,
             'totalReviews' => $totalReviews

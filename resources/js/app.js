@@ -100,10 +100,10 @@ function decrement(e) {
   });
 
   /*Edit User data*/
-
-
   let userNameInput = document.getElementById("userName");
   let userEmailInput = document.getElementById("userEmail");
+
+
   let submitBtn = document.getElementById("acceptChanges")
 
   document.getElementById('editUserBtn').onclick = function() {
@@ -121,5 +121,6 @@ function decrement(e) {
         submitBtn.style.visibility = "hidden";
         userNameInput.classList.remove("dashboard-input");
         userEmailInput.classList.remove("dashboard-input");
+
     }
 }

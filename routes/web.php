@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+
 Route::get('/profilis', [UserController::class,'index'])->name('dashboard.index')->middleware('auth');
 Route::put('/profilis/edit', [UserController::class, 'update'])->name('update.user')->middleware('auth');
 
