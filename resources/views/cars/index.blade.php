@@ -6,13 +6,12 @@
         @if(count($cars)>0)
         @foreach($cars as $car)
         <div class="review-cards">
-            <div class="review-card flex flex-col md:flex-between  md:grid md:grid-cols-3 mt-5 mx-2 border-b-4 border-slate-200">
+            <div class="review-card flex flex-col md:flex-between  md:grid md:grid-cols-6 mt-5 mx-2 border-b-4 border-slate-200 ">
 
-                    <section class="car-info bg-slate-100">
-
-                        @if($car->image)
+                    <section class="car-info bg-slate-100 col-span-2 table-cell">
+                        @if($car->hero_image)
                          <div>
-                            <img  src="{{ asset('storage/'.$car->image)}}">
+                            <img  src="{{ asset('storage/'.$car->hero_image)}}">
                          </div>
                         @else
                          <div>
@@ -33,22 +32,30 @@
                                 <svg aria-hidden="true" class="w-5 h-5 mt-0.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                                 </div>
                             </div>
-
                         </div>
+                    </section>
+
+                    @if($car->about > 0)
+                    <section class="about px-4 col-span-3">
+                        <div class="max-h-72 overflow-hidden">{{$car->about}}</div>
+                        <a href="/automobiliai/{{$car->id}}" class="text-lime-700">Skaityti daugiau...</a>
+                    </section>
+                    @else
+                    <section class="about p-2 col-span-3">
 
                     </section>
 
-                    <div class="flex items-center justify-center md:justify-end col-span-2 my-3">
-                        <div class="flex md:flex-col">
+                    @endif
 
+                    <section class="flex items-center justify-center md:justify-end col-span-1 my-3 ">
+                        <div class="flex md:flex-col">
                         <a class="my-0.5 mx-1 bg-zinc-500 rounded-r-sm hover:bg-gray-700 transition ease-in-out text-lg p-2 border-slate-200 text-white text-center"
                         href="/automobiliai/{{$car->id}}">Apie automobilį</a>
-
                         <a class="my-0.5 mx-1 bg-zinc-500 rounded-r-sm hover:bg-gray-700 transition ease-in-out text-lg p-2 border-slate-200 text-white  text-center"
                         href="/rasyti-atsiliepima/{{$car->id}}">Rašyti atsiliepimą</a>
+                        </div>
+                    </section>
 
-                         </div>
-                    </div>
             </div>
         </div>
         @endforeach

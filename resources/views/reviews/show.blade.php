@@ -4,7 +4,11 @@
 
     <section class=" card-info lg:col-span-3 xl:col-span-2 bg-slate-100  mt-5 h-full border-b-2">
         <div>
-        <img src="{{ asset('storage/'.$review->carGeneration->image)}}">
+            @if($review->carGeneration->hero_image)
+            <img class="object-fill h-full" src="{{ asset('storage/'.$review->carGeneration->hero_image)}}">
+            @else
+            <img  src="{{ asset('images/image-unavailable.jpg')}}">
+            @endif
         </div>
 
         <div class="flex flex-col items-center pt-2 pb-2 md:pb-2">

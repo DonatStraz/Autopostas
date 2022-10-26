@@ -16,9 +16,16 @@
 
                 <div class="review-card md:grid md:grid-cols-3 border-b-4 mt-2 bg-slate-50 border-slate-200">
                     <div class="car-info col-span-1">
-                      <img src="{{ asset('storage/'. $review->carGeneration->image)}}">
-                        <div class="flex flex-col items-center pt-2 bg-slate-100 pb-2 md:pb-2">
-                            <div class="car-title text-xl">{{$review->carMake->name}} {{$review->carModel->name}} {{$review->carGeneration->name}}</div>
+
+                        <div class="flex flex-col items-center bg-slate-100 pb-2 md:pb-2">
+
+                            @if($review->carGeneration->hero_image)
+                            <img class="object-fill h-full" src="{{ asset('storage/'.$review->carGeneration->hero_image)}}">
+                            @else
+                            <img  src="{{ asset('images/image-unavailable.jpg')}}">
+                            @endif
+
+                            <div class="car-title text-xl"><a href="/automobiliai/{{$review->carGeneration->id}}">{{$review->carMake->name}} {{$review->carModel->name}} {{$review->carGeneration->name}}</a></div>
                             @php $rating = $featureScores->avg();  @endphp
 
                             <div class="flex">Automobilio reitingas @php echo round($rating, 1)  @endphp

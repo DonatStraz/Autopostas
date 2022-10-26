@@ -12,9 +12,15 @@ class CarGeneration extends Model
 
     protected $guarded =[];
 
+    protected $casts = [
+        'images' => 'array',
+    ];
+
     public function carReviews(){
         return $this->hasMany(Review::class, 'generation_id');
     }
+
+
 
     public function carModels(){
         return $this->belongsTo(CarModel::class, 'model_id');

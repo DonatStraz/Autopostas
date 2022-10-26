@@ -32,6 +32,10 @@
 
             <div class="flex flex-wrap mt-5">
 
+
+            @php $features = collect(['reliability','engines','interior' ,'chassis','comfort','handling','practicality','power_economy']);
+            @endphp
+
             <div class="form-group rating ">
                 <div for="rate" class="rate flex items-center">
                   <input type="radio" id="reliability5" name="reliability" value="5" {{ ($review->reliability=="5")? "checked" : "" }}/>

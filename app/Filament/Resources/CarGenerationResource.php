@@ -39,8 +39,9 @@ class CarGenerationResource extends Resource
                 ->options(CarModel::all()->pluck('name', 'id'))
                 ->searchable(),
                 TextInput::make('name'),
-                FileUpload::make('image')->image()
-
+                TextInput::make('about'),
+                FileUpload::make('hero_image')->image()->directory('Generation hero images'),
+                FileUpload::make('images')->image()->multiple()->directory('Generation images')->minFiles(1)->maxFiles(8)
             ])
             ]);
     }
@@ -51,8 +52,8 @@ class CarGenerationResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('name'),
-                TextColumn::make('CarModel.name')->sortable(),
-                ImageColumn::make('image')
+                TextColumn::make('CarModels.name')->sortable(),
+                ImageColumn::make('hero_image')
             ])
             ->filters([
                 //

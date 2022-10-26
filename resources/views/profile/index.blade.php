@@ -51,8 +51,13 @@
             <div class="review-card md:grid md:grid-cols-3 mb-2 border-b-4 border-slate-200">
                 <div class="car-info col-span-1">
 
-                    <img src="{{ asset('images/bmw-i4.jpg')}}">
-                    <div class="flex flex-col items-center pt-2 bg-slate-100 pb-2 md:pb-2">
+                    <div class="flex flex-col items-center  bg-slate-100 pb-2 md:pb-2">
+
+                    @if($review->carGeneration->hero_image)
+                    <img class="object-fill h-full" src="{{ asset('storage/'.$review->carGeneration->hero_image)}}">
+                    @else
+                    <img  src="{{ asset('images/image-unavailable.jpg')}}">
+                    @endif
 
                         <div class="car-title text-2xl">{{$review->carMake->name}} {{$review->carModel->name}} {{$review->carGeneration->name}}</div>
 

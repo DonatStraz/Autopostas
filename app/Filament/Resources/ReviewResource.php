@@ -39,7 +39,6 @@ class ReviewResource extends Resource
                 TextColumn::make('carModel.name'),
                 TextColumn::make('carGeneration.name'),
                 TextColumn::make('recommend'),
-                TextColumn::make('')
             ])
             ->filters([
                 //

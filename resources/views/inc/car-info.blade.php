@@ -5,10 +5,21 @@
         @endforeach
     @endif
 
-    <img class="object-fill h-full" src="{{ asset('storage/'.$car->image)}}">
-    <div class="flex flex-col items-center pt-2 bg-slate-100 pb-2 md:pb-2">
+    <div class="image-section">
+        @if($car->hero_image)
+        <div>
+            <img class="object-fill h-full" src="{{ asset('storage/'.$car->hero_image)}}">
+        </div>
+        @else
+            <div>
+            <img  src="{{ asset('images/image-unavailable.jpg')}}">
+            </div>
+        @endif
+    </div>
 
-             <div class="car-title text-2xl my-2">{{$car->CarModels->CarMakes->name}} {{$car->CarModels->name}} {{$car->name}}</div>
+    <div class=" flex flex-col items-center pt-2 bg-slate-100 pb-2 md:pb-2">
+
+        <div class="car-title text-2xl my-2">{{$car->CarModels->CarMakes->name}} {{$car->CarModels->name}} {{$car->name}}</div>
 
         @if(count($carAverageScores) > 0)
             @foreach($carAverageScores as $carScore)
@@ -16,7 +27,7 @@
                 'interior' => $carScore->interior,'chassis' => $carScore->chassis,'comfort' => $carScore->comfort,'handling' => $carScore->handling,
                 'practicality' => $carScore->practicality,'power_economy' => $carScore->power_economy]) @endphp
             @endforeach
-       @endif
+        @endif
 
         <div class="car-ratings">
             <div class="flex justify-center">
@@ -38,20 +49,22 @@
                         </div>
                     @endforeach
             </div>
+
             @if(count($reviewCounts) > 0)
                 @foreach($reviewCounts as $count) <p class="text-center mt-3 text-slate-500">Iš viso įvertinimu: {{$count->car_reviews_count}}</p>
                 @endforeach
                 @else
                 <p class="text-center mt-3 text-slate-500">Įvertinimu nera</p>
             @endif
+
             @php $featureTitles = collect(['Patikimumas', 'Varikliai',
             'Interjeras' ,'Kėbulas','Komfortas','Valdomumas',
             'Praktiškumas' ,'Galia/Ekonomika' ]) @endphp
 
-            <div class="grid grid-cols-2">
-                <div class="mt-0.5">
+            <div class="grid grid-cols-2 ">
+                <div class="mt-2 md:mt-0.5">
                     @foreach($featureTitles  as $featureTitle )
-                    <div class="flex flex-col">
+                    <div class="flex flex-col md:mt-1 ">
                     {{$featureTitle}}
                     </div>
                     @endforeach
@@ -59,7 +72,7 @@
 
                 <div class="">
                 @foreach($featureScores as $featureScore)
-                <div class="h-6">
+                <div class="h-6 mt-1">
                    {{round( $featureScore, 1)}}
 
                    @php $rating =  $featureScore @endphp
