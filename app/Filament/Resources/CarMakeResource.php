@@ -10,13 +10,15 @@ use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\CarMakeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\CarMakeResource\RelationManagers;
-use Filament\Forms\Components\Select;
 
 class CarMakeResource extends Resource
 {
@@ -29,6 +31,7 @@ class CarMakeResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name'),
+                FileUpload::make('image')->image()->directory('Manufacturer hero images'),
                 ]);
     }
 
@@ -38,6 +41,7 @@ class CarMakeResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('name'),
+                ImageColumn::make('image')
             ])
             ->filters([
                 //

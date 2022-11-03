@@ -61,5 +61,15 @@ class CarController extends Controller
         ]);
     }
 
+    public function main()
+    {
+        $latestCars = CarGeneration::orderBy('created_at', 'desc')->take(3)->get();
+        $makes = CarMake::get();
+
+        return view('index')->with([
+            'latestCars' => $latestCars,
+            'makes' => $makes,
+        ]);
+    }
 
 }

@@ -41,7 +41,7 @@ class CarGenerationResource extends Resource
                 TextInput::make('name'),
                 TextInput::make('about'),
                 FileUpload::make('hero_image')->image()->directory('Generation hero images'),
-                FileUpload::make('images')->image()->multiple()->directory('Generation images')->minFiles(1)->maxFiles(8)
+                FileUpload::make('images')->image()->multiple()->directory('Generation images')->maxFiles(8)
             ])
             ]);
     }

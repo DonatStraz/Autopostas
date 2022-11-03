@@ -7,7 +7,7 @@
      @foreach($cars as $car)
         @foreach($car->images as $image)
         <?php if($count == 6) break; ?>
-            <img class="md:w-1/6 w-1/3 p-2" src="{{ asset('storage/'.$image)}}">
+            <img class="md:w-1/6 w-1/3 p-2 object-scale-down" src="{{ asset('storage/'.$image)}}">
         <?php $count++; ?>
         @endforeach
     </section>

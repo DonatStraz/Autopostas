@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         /* Fetch makes for make-select dropdown  */
-        View::composer(['inc.main-dropdown', 'inc.secondary-dropdown', 'inc.reviews-dropdown'], function($view){
-            $view->with('makes', CarMake::get(["name", "id"]));
+        View::composer(['index', 'cars.index', 'reviews.index', 'inc.manufacturer-menu'], function($view){
+            $view->with('makes', CarMake::get());
         });
 
     }

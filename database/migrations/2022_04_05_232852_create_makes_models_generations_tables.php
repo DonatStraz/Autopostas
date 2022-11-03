@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('car_makes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image');
             $table->timestamps();
         });
         Schema::create('car_models', function (Blueprint $table) {

@@ -13,7 +13,7 @@ class CarMake extends Model
     protected $guarded =[];
 
     public function carModels(){
-        return $this->hasMany(CarModel::class, 'model_id');
+        return $this->hasMany(CarModel::class, 'id');
     }
 
     public function generations()

@@ -8,7 +8,7 @@
     <div class="image-section">
         @if($car->hero_image)
         <div>
-            <img class="object-fill h-full" src="{{ asset('storage/'.$car->hero_image)}}">
+            <img class="object-scale-down h-full shadow md:mt-2 " src="{{ asset('storage/'.$car->hero_image)}}">
         </div>
         @else
             <div>
@@ -17,7 +17,7 @@
         @endif
     </div>
 
-    <div class=" flex flex-col items-center pt-2 bg-slate-100 pb-2 md:pb-2">
+    <div class=" flex flex-col items-center pt-2  pb-2 md:pb-2">
 
         <div class="car-title text-2xl my-2">{{$car->CarModels->CarMakes->name}} {{$car->CarModels->name}} {{$car->name}}</div>
 
