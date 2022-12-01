@@ -108,6 +108,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $review = Review::find($id)->delete();
+        return Redirect::route('/profilis');
+
     }
 }

@@ -2,8 +2,6 @@
 
     @include('inc.main-dropdown')
 
-
-
     <div class="container mx-auto mt-5">
         <p class="text-2xl">Nauji Automobilių įkelimai</p>
         <div section="new-cars-section">

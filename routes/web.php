@@ -25,8 +25,8 @@ Route::get('/atsiliepimai/{id}/{car_id}', [ReviewController::class,'show'])->nam
 Route::get('/rasyti-atsiliepima/{id}', [ReviewController::class,'create'])->name('reviews.create');
 Route::post('/reviews/create', [ReviewController::class, 'store'])->name('store.review');
 Route::get('/redaguoti-atsiliepima/{id}/{car_id}', [ReviewController::class, 'edit'])->name('edit.review');
+Route::get('/review-delete/{id}', [ReviewController::class, 'destroy'])->name('delete.review')->middleware('auth');
 Route::put('/review-edit/{id}', [ReviewController::class, 'update'])->name('update.review');
-/*Route::get('/review/remove-image/{id}', [ReviewController::class, 'removeImage'])->name('delete.image');*/
 
 Route::get('/straipsniai', function () {
     return view('articles.index');

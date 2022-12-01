@@ -48,15 +48,17 @@
             @if(count($reviews) > 0)
         @foreach($reviews as $review)
 
+
+
             <div class="review-card md:grid md:grid-cols-3 mb-2 border-b-4 border-slate-200">
                 <div class="car-info col-span-1">
 
-                    <div class="flex flex-col items-center  bg-slate-100 pb-2 md:pb-2">
+                    <div class="flex flex-col items-center bg-slate-100 pb-2 md:pb-2">
 
                     @if($review->carGeneration->hero_image)
-                    <img class="object-fill h-full" src="{{ asset('storage/'.$review->carGeneration->hero_image)}}">
-                    @else
-                    <img  src="{{ asset('images/image-unavailable.jpg')}}">
+                        <img class="object-fill h-full" src="{{ asset('storage/'.$review->carGeneration->hero_image)}}">
+                        @else
+                        <img  src="{{ asset('images/image-unavailable.jpg')}}">
                     @endif
 
                         <div class="car-title text-2xl">{{$review->carMake->name}} {{$review->carModel->name}} {{$review->carGeneration->name}}</div>
@@ -79,8 +81,10 @@
 
                     <div class="flex justify-between">
                         <div class="date text-sm font-light mt-1">{{$review->created_at->format('Y-m-d')}}</div>
-
-                        <div><a class="text-xl" href="redaguoti-atsiliepima/{{$review->id}}/{{$review->carGeneration->id}}"><i class="fa-solid fa-pen-to-square text-lime-600"></i></a></div>
+                        <div>
+                            <a class="text-xl" href="review-delete/{{$review->id}}"><i class="fa-solid fa-circle-xmark text-red-500"></i></a>
+                            <a class="text-xl" href="redaguoti-atsiliepima/{{$review->id}}/{{$review->carGeneration->id}}"><i class="fa-solid fa-pen-to-square text-lime-600"></i></a>
+                        </div>
                     </div>
 
                     <div class="review-title text-xl"><a href="atsiliepimai/{{$review->id}}/{{$review->carGeneration->id}}">{{$review->title}}</a></div>

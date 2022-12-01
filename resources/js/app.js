@@ -99,6 +99,16 @@ function decrement(e) {
     btn.addEventListener("click", increment);
   });
 
+  $(document).ready(function(){
+    $("#hide-menu").click(function(){
+      $("#manufacturer-menu").hide();
+    });
+    $("#show-menu").click(function(){
+      $("#manufacturer-menu").show();
+    });
+  });
+
+
   /*Edit User data*/
   let userNameInput = document.getElementById("userName");
   let userEmailInput = document.getElementById("userEmail");
